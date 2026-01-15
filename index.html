@@ -5,26 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GALAXY MIND AI LABS | Advanced LLM Development</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@300;400;600&display=swap');
+
+        :root { 
+            --bg-primary: #F9F7F2; 
+            --bg-secondary: #F2EFE9; 
+            --bg-card: #FFFFFF; 
+            --accent: #f9500f; 
+            --text-primary: #2C2C2C; 
+            --text-secondary: #706F6C; 
+            --border-thin: transparent; 
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+
+        body.dark-mode { 
+            --bg-primary: #18181a; 
+            --bg-secondary: #222224; 
+            --bg-card: #222224; 
+            --accent: #f9500f; 
+            --text-primary: #E2E2DF; 
+            --text-secondary: #A0A09C; 
+            --border-thin: rgba(255, 255, 255, 0.1); 
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        :root {
-            /* Dark theme colors only */
-            --bg-primary: #18181a;
-            --bg-secondary: #222224;
-            --bg-card: #222224;
-            --text-primary: #E2E2DF;
-            --text-secondary: #A0A09C;
-            --text-tertiary: #707080;
-            --accent-color: #f9500f;
-            --accent-light: #818cf8;
-            --border-color: #2a2a3a;
-            --hover-color: #f9500f;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -34,10 +44,11 @@
             overflow-x: hidden;
             min-height: 100vh;
             line-height: 1.6;
+            transition: background var(--transition);
         }
 
         h1, h2, h3, h4, h5 {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Pixelify Sans', sans-serif;
             font-weight: 600;
             line-height: 1.2;
         }
@@ -102,9 +113,9 @@
             width: 100%;
             z-index: 100;
             backdrop-filter: blur(20px);
-            background: #E2E2DF;
-            border-bottom: 1px solid var(--border-color);
-            transition: all 0.4s ease;
+            background: var(--bg-secondary);
+            border-bottom: 0.5px solid var(--border-thin);
+            transition: var(--transition);
         }
 
         .header-content {
@@ -120,7 +131,7 @@
         }
 
         .logo-text {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Pixelify Sans', sans-serif;
             font-weight: 700;
             font-size: 24px;
             color: var(--text-primary);
@@ -128,7 +139,28 @@
         }
 
         .logo-dot {
-            color: var(--accent-color);
+            color: var(--accent);
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: 0.5px solid var(--border-thin);
+            color: var(--text-secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(249, 80, 15, 0.05);
         }
 
         nav ul {
@@ -142,7 +174,7 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 16px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             padding: 8px 0;
             position: relative;
         }
@@ -162,7 +194,7 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background-color: var(--accent-color);
+            background-color: var(--accent);
         }
 
         /* Hero Section */
@@ -188,7 +220,7 @@
         }
 
         #typing-text {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Pixelify Sans', sans-serif;
             font-size: 64px;
             font-weight: 700;
             margin-bottom: 24px;
@@ -201,13 +233,14 @@
             display: inline-block;
             width: 3px;
             height: 70px;
-            background-color: var(--accent-color);
+            background-color: var(--accent);
             margin-left: 8px;
             vertical-align: middle;
             animation: blink 1s infinite;
         }
 
         .hero-subtitle {
+            font-family: 'Merriweather', serif;
             font-size: 20px;
             margin-bottom: 32px;
             color: var(--text-secondary);
@@ -217,6 +250,7 @@
         }
 
         .tagline {
+            font-family: 'Merriweather', serif;
             font-size: 18px;
             color: var(--text-secondary);
             max-width: 640px;
@@ -241,32 +275,33 @@
             font-size: 16px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             cursor: pointer;
             border: none;
             font-family: 'Inter', sans-serif;
         }
 
         .btn-primary {
-            background-color: var(--accent-color);
+            background-color: var(--accent);
             color: white;
         }
 
         .btn-primary:hover {
-            background-color: var(--hover-color);
+            background-color: var(--accent);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 10px 25px rgba(249, 80, 15, 0.3);
+            opacity: 0.9;
         }
 
         .btn-secondary {
             background-color: transparent;
             color: var(--text-primary);
-            border: 1px solid var(--border-color);
+            border: 0.5px solid var(--text-primary);
         }
 
         .btn-secondary:hover {
-            border-color: var(--accent-color);
-            background: rgba(99, 102, 241, 0.05);
+            border-color: var(--accent);
+            background: rgba(249, 80, 15, 0.05);
             transform: translateY(-2px);
         }
 
@@ -277,7 +312,7 @@
         }
 
         .section-title {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Pixelify Sans', sans-serif;
             font-size: 40px;
             text-align: center;
             margin-bottom: 16px;
@@ -285,6 +320,7 @@
         }
 
         .section-subtitle {
+            font-family: 'Merriweather', serif;
             text-align: center;
             font-size: 18px;
             color: var(--text-secondary);
@@ -304,25 +340,27 @@
             background: var(--bg-card);
             border-radius: 16px;
             padding: 40px 32px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
+            border: 0.5px solid var(--border-thin);
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
 
         .product-card:hover {
             transform: translateY(-8px);
-            border-color: var(--accent-color);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .product-title {
+            font-family: 'Pixelify Sans', sans-serif;
             font-size: 24px;
             margin-bottom: 16px;
             color: var(--text-primary);
         }
 
         .product-description {
+            font-family: 'Merriweather', serif;
             color: var(--text-secondary);
             line-height: 1.7;
             margin-bottom: 24px;
@@ -343,7 +381,7 @@
 
         .product-features li::before {
             content: "•";
-            color: var(--accent-color);
+            color: var(--accent);
             font-weight: bold;
         }
 
@@ -367,12 +405,14 @@
         }
 
         .about-text h3 {
+            font-family: 'Pixelify Sans', sans-serif;
             font-size: 32px;
             margin-bottom: 24px;
             color: var(--text-primary);
         }
 
         .about-text p {
+            font-family: 'Merriweather', serif;
             color: var(--text-secondary);
             line-height: 1.7;
             margin-bottom: 20px;
@@ -393,7 +433,7 @@
 
         .about-features li::before {
             content: "—";
-            color: var(--accent-color);
+            color: var(--accent);
         }
 
         .faq-section {
@@ -409,7 +449,7 @@
             background: var(--bg-card);
             border-radius: 12px;
             margin-bottom: 16px;
-            border: 1px solid var(--border-color);
+            border: 0.5px solid var(--border-thin);
             overflow: hidden;
         }
 
@@ -421,21 +461,22 @@
             cursor: pointer;
             font-weight: 600;
             color: var(--text-primary);
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .faq-question:hover {
-            background: rgba(99, 102, 241, 0.05);
+            background: rgba(249, 80, 15, 0.05);
         }
 
         .faq-toggle {
-            color: var(--accent-color);
+            color: var(--accent);
             transition: transform 0.3s ease;
             font-weight: bold;
             font-size: 20px;
         }
 
         .faq-answer {
+            font-family: 'Merriweather', serif;
             padding: 0 32px;
             max-height: 0;
             overflow: hidden;
@@ -466,12 +507,14 @@
         }
 
         .contact-info h3 {
+            font-family: 'Pixelify Sans', sans-serif;
             font-size: 28px;
             margin-bottom: 24px;
             color: var(--text-primary);
         }
 
         .contact-info p {
+            font-family: 'Merriweather', serif;
             color: var(--text-secondary);
             margin-bottom: 32px;
             line-height: 1.7;
@@ -512,14 +555,14 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            border: 0.5px solid var(--border-thin);
         }
 
         .social-link:hover {
             color: var(--text-primary);
-            border-color: var(--accent-color);
-            background: rgba(99, 102, 241, 0.05);
+            border-color: var(--accent);
+            background: rgba(249, 80, 15, 0.05);
             transform: translateY(-4px);
         }
 
@@ -527,7 +570,11 @@
             background: var(--bg-card);
             border-radius: 16px;
             padding: 48px 40px;
-            border: 1px solid var(--border-color);
+            border: 0.5px solid var(--border-thin);
+        }
+
+        .contact-form h3 {
+            font-family: 'Pixelify Sans', sans-serif;
         }
 
         .form-group {
@@ -545,18 +592,18 @@
             width: 100%;
             padding: 16px 20px;
             background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
+            border: 0.5px solid var(--border-thin);
             border-radius: 12px;
             color: var(--text-primary);
             font-size: 16px;
             font-family: 'Inter', sans-serif;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .form-control:focus {
             outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(249, 80, 15, 0.1);
         }
 
         textarea.form-control {
@@ -568,7 +615,7 @@
         footer {
             background: var(--bg-card);
             padding: 48px 0 32px;
-            border-top: 1px solid var(--border-color);
+            border-top: 0.5px solid var(--border-thin);
         }
 
         .footer-content {
@@ -583,8 +630,8 @@
         .copyright {
             text-align: center;
             padding-top: 32px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-tertiary);
+            border-top: 0.5px solid var(--border-thin);
+            color: var(--text-secondary);
             font-size: 14px;
         }
 
@@ -631,12 +678,13 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--border-color);
+            background: var(--accent);
             border-radius: 5px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-color);
+            background: var(--accent);
+            opacity: 0.8;
         }
 
         /* Responsive */
@@ -660,8 +708,15 @@
             }
             
             .header-content {
-                flex-direction: column;
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: wrap;
                 gap: 20px;
+            }
+
+            nav {
+                order: 3;
+                width: 100%;
             }
             
             nav ul {
@@ -696,7 +751,6 @@
                 padding: 40px 32px;
             }
         }
-
         @media (max-width: 576px) {
             #typing-text {
                 font-size: 32px;
@@ -756,6 +810,10 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
+
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
         </div>
     </header>
@@ -1026,12 +1084,40 @@
             </div>
             
             <div class="copyright">
-                © 2025 Galaxy Mind AI Labs. All rights reserved.
+                © 2026 Galaxy Mind AI Labs. All rights reserved.
             </div>
         </div>
     </footer>
 
     <script>
+        // Theme Toggle
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            
+            // Применяем сохраненную тему
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        }
+
         function initContactForm() {
             const contactForm = document.getElementById('contactForm');
 
@@ -1067,18 +1153,17 @@
 
                     if (!res.ok) throw new Error("Firestore error");
 
-                    alert(` Thank you, ${name}. Your request has been submitted.`);
+                    alert(`Thank you, ${name}. Your request has been submitted.`);
                     contactForm.reset();
                 } catch (error) {
-                    alert(" Error submitting your request. Please try again.");
+                    alert("Error submitting your request. Please try again.");
                 }
             });
         }
 
+        initThemeToggle();
         initContactForm();
     </script>
-
-
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1113,12 +1198,9 @@
                 }
             }
             
-            
             setTimeout(type, 1000);
             
-            
             initFAQ();
-            
             
             window.addEventListener('scroll', updateHeader);
             
@@ -1132,40 +1214,31 @@
                 const question = item.querySelector('.faq-question');
                 
                 question.addEventListener('click', () => {
-                    
                     faqItems.forEach(otherItem => {
                         if (otherItem !== item && otherItem.classList.contains('active')) {
                             otherItem.classList.remove('active');
                         }
                     });
                     
-                    
                     item.classList.toggle('active');
                 });
             });
-            
             
             if (faqItems.length > 0) {
                 faqItems[0].classList.add('active');
             }
         }
         
-        
-        
-        
         function updateHeader() {
             const header = document.querySelector('header');
             const scrollPosition = window.scrollY;
             
             if (scrollPosition > 50) {
-                header.style.background = 'rgba(10, 10, 15, 0.95)';
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
             } else {
-                header.style.background = 'rgba(10, 10, 15, 0.9)';
                 header.style.boxShadow = 'none';
             }
         }
-        
         
         function updateActiveNav() {
             const sections = document.querySelectorAll('section[id]');
