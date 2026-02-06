@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Report: STEM-Reasoning-Complex Training Dataset</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --text-color: #2d3748;
+            --light-gray: #f8fafc;
+            --border-color: #e2e8f0;
+            --accent-color: #2b6cb0;
+            --critical-bg: #e6f7ff;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.65;
+            color: var(--text-color);
+            background-color: #fff;
+            padding: 2.5rem;
+            max-width: 920px;
+            margin: 0 auto;
+            font-size: 1.02rem;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2.2rem;
+            border-bottom: 2.5px solid var(--accent-color);
+            padding-bottom: 1.3rem;
+        }
+        h1 {
+            font-size: 1.95rem;
+            color: var(--primary-color);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.15rem;
+            margin-top: 0.4rem;
+            font-weight: 500;
+        }
+        .dataset-emphasis {
+            background-color: #ebf4ff;
+            border-left: 4px solid var(--accent-color);
+            padding: 0.9rem 1.4rem;
+            margin: 1.4rem 0;
+            border-radius: 0 4px 4px 0;
+            font-weight: 500;
+        }
+        .critical-note {
+            background-color: var(--critical-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem 1.4rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+            font-weight: 500;
+        }
+        .metadata {
+            display: flex;
+            justify-content: space-between;
+            margin: 1.6rem 0;
+            font-size: 0.98rem;
+            color: #4a5568;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.9rem 0;
+            font-weight: 500;
+        }
+        section {
+            margin-bottom: 1.9rem;
+            text-align: justify;
+            hyphens: auto;
+        }
+        h2 {
+            font-size: 1.45rem;
+            color: var(--primary-color);
+            margin: 1.6rem 0 1.1rem;
+            padding-bottom: 0.45rem;
+            border-bottom: 1.5px solid var(--border-color);
+            font-weight: 600;
+        }
+        p {
+            margin-bottom: 1.2rem;
+            text-indent: 1.7rem;
+            hyphens: auto;
+        }
+        .formula-container {
+            background-color: var(--light-gray);
+            padding: 1.4rem;
+            border-radius: 5px;
+            margin: 1.7rem 0;
+            text-align: center;
+            border-left: 3.5px solid var(--accent-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+        .source-highlight {
+            background-color: #f0f9ff;
+            padding: 1.4rem;
+            border-radius: 5px;
+            margin: 1.7rem 0;
+            border: 1px solid #bee3f8;
+            border-left-width: 4px;
+        }
+        .model-correction {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.1rem 1.3rem;
+            margin: 1.4rem 0;
+            border-radius: 0 4px 4px 0;
+            font-weight: 500;
+        }
+        .footer-note {
+            margin-top: 2.8rem;
+            padding-top: 1.7rem;
+            border-top: 1.5px solid var(--border-color);
+            font-style: italic;
+            color: #4a5568;
+            font-size: 0.97rem;
+            line-height: 1.6;
+        }
+        code {
+            background-color: #edf2f7;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.95em;
+        }
+        @media print {
+            body {
+                padding: 1.8rem;
+                max-width: 100%;
+                font-size: 0.95rem;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Technical Report: STEM-Reasoning-Complex Training Dataset</h1>
+    </header>
+
+    <div class="metadata">
+        <div>Dataset: galaxyMindAiLabs/stem-reasoning-complex</div>
+        <div>Date: February 7, 2026</div>
+        <div>Document ID: TR-STEM-TRAIN-2026-001</div>
+    </div>
+
+    <section>
+        <p>The <code>galaxyMindAiLabs/stem-reasoning-complex</code> dataset constitutes a specialized training corpus engineered explicitly for supervised fine-tuning (SFT) and alignment of large language models in STEM reasoning domains. This resource serves as foundational training material designed to cultivate robust multi-step analytical capabilities through explicit Chain-of-Thought supervision. The dataset integrates curated examples from existing high-quality sources with rigorously verified synthetically generated content. Critically, all samples retain their full reasoning trajectories embedded directly within answer fields as essential pedagogical components for training models to articulate intermediate solution steps.</p>
+    </section>
+
+    <section>
+        <h2>Data Composition and Sourcing</h2>
+        <p>The dataset comprises 102,972 meticulously validated samples distributed across physics, chemistry, biology, mathematics, and engineering disciplines. These samples underwent strict STEM-relevance filtering while preserving their original Chain-of-Thought structure. Synthetically generated content followed identical structural requirements, ensuring consistent embedding of reasoning trajectories within answer fields throughout the corpus.</p>
+    </section>
+
+    <section>
+        <h2>Synthetic Generation Methodology</h2>
+        <p>Synthetic expansion leveraged DeepSeek-R1 and <strong>gpt-oss-120b</strong> to generate question-answer pairs with reasoning chains fully embedded in the answer :</p>
+        
+        <div class="model-correction">
+            <strong>Generation Models:</strong> DeepSeek-R1 and gpt-oss-120b were used for generation. 
+        </div>
+        
+        <div class="formula-container">
+            \( (q, a) = \mathcal{G}(M_k, \tau, \Theta_{\text{CoT}}) \quad \text{where} \quad a = \text{CoT}(q) \parallel a_{\text{final}}, \quad k \in \{\text{DeepSeek-R1}, \text{gpt-oss-120b}\} \)
+        </div>
+        
+        <p>Temperature was constrained to \( \tau \leq 0.7 \) during generation. Prompt templates \( \Theta_{\text{CoT}} \) explicitly required models to "show all intermediate steps," "justify each transformation," and "explain conceptual transitions." The complete reasoning trajectory is treated as an inseparable component of the generated answer \( a \).</p>
+    </section>
+
+    <section>
+        <h2>Verification Protocol with CoT Preservation</h2>
+        <p>Verification employed dual-path validation: symbolic equivalence checking (SymPy) for mathematical expressions and semantic consensus verification for descriptive components. Crucially, verification assessed both final answer correctness AND validity of the embedded reasoning trajectory:</p>
+        
+        <div class="formula-container">
+            \( D_{\text{final}} = \{ (q, a) \in D_{\text{raw}} \mid \text{verify}_{\text{answer}}(a_{\text{final}}) \land \text{verify}_{\text{reasoning}}(\text{CoT}(q)) = \text{true} \} \)
+        </div>
+        
+        <p>The verification function evaluated: (1) numerical/structural correctness of the final answer component \( a_{\text{final}} \) (tolerance \( \epsilon \leq 10^{-6} \)), and (2) logical coherence, step validity, and absence of non-sequiturs in the embedded reasoning text \( \text{CoT}(q) \). Approximately 63% of raw outputs were rejected for answer errors OR flawed reasoning pathways. Validated samples retain their complete structure with reasoning fully embedded in the answer field.</p>
+    </section>
+
+    <section>
+        <h2>Structural Characteristics</h2>
+        <p>Every sample adheres to a consistent two-field JSON structure optimized for CoT-aware SFT pipelines, with reasoning trajectories embedded directly within the answer field:</p>
+        
+        <div class="formula-container">
+            \( \{ \text{"question"}: q,\  \text{"answer"}: a \} \quad \text{where} \quad a = [\text{reasoning steps}] + [\text{final answer}] \)
+        </div>
+        
+        <p>Reasoning chains average 4.7 intermediate steps per sample (range: 2–18 steps), with explicit justifications, formula derivations, unit conversions, and conceptual explanations fully integrated into the answer text. Domain distribution: physical sciences (42%), mathematics (28%), life sciences (18%), engineering (12%). Parquet storage achieves ~68% compression versus JSON equivalents while preserving full textual fidelity of embedded reasoning components.</p>
+    </section>
+</body>
+</html>
+
